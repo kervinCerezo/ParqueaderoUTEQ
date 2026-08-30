@@ -19,7 +19,10 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 // Parqueadero
+const VehiculosSimple = React.lazy(() => import('./views/parqueadero/VehiculosSimple'))
 const ListaVehiculos = React.lazy(() => import('./views/parqueadero/ListaVehiculos'))
+const ListaPropietarios = React.lazy(() => import('./views/parqueadero/ListaPropietarios'))
+const HistorialVehiculos = React.lazy(() => import('./views/parqueadero/HistorialVehiculos'))
 
 // Components
 const Accordion = React.lazy(() => import('./views/components/accordion/Accordion'))
@@ -88,7 +91,10 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 export const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/parqueadero/vehiculos', name: 'Vehículos y propietarios', element: ListaVehiculos },
+  { path: '/parqueadero/vehiculos', name: 'Vehículos', element: VehiculosSimple },
+  { path: '/parqueadero/vehiculo-propietario', name: 'Vehículo y propietario', element: ListaVehiculos },
+  { path: '/parqueadero/propietarios', name: 'Propietarios', element: ListaPropietarios },
+  { path: '/parqueadero/historial', name: 'Historial', element: HistorialVehiculos },
   { path: '/components', name: 'Components', element: Accordion, exact: true },
   { path: '/components/accordion', name: 'Accordion', element: Accordion },
   { path: '/components/alerts', name: 'Alerts', element: Alerts },

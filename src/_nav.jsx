@@ -1,16 +1,15 @@
 /**
  * Sidebar Navigation Configuration
  *
- * Menú simplificado para la práctica "UTEQ Smart Parking": mantiene el
- * Dashboard de la plantilla y agrega una única opción funcional para el
- * caso de estudio, "Vehículos y propietarios".
+ * Menú del caso de estudio "UTEQ Smart Parking": mantiene el Dashboard
+ * de la plantilla y agrega las opciones del módulo de parqueadero.
  *
  * @module _nav
  */
 
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cilCarAlt, cilSpeedometer } from '@coreui/icons'
+import { cilCarAlt, cilContact, cilHistory, cilSpeedometer, cilUser } from '@coreui/icons'
 import { CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
@@ -26,9 +25,27 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Vehículos y propietarios',
+    name: 'Vehículos',
     to: '/parqueadero/vehiculos',
     icon: <CIcon icon={cilCarAlt} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Vehículo y propietario',
+    to: '/parqueadero/vehiculo-propietario',
+    icon: <CIcon icon={cilContact} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Propietarios',
+    to: '/parqueadero/propietarios',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Historial',
+    to: '/parqueadero/historial',
+    icon: <CIcon icon={cilHistory} customClassName="nav-icon" />,
   },
 ]
 
