@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![UTEQ Smart Parking](docs/image.png)
-
 ### Plataforma integral para la administración de vehículos y propietarios autorizados
 
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react)](https://react.dev/)
@@ -16,7 +14,22 @@
 
 ---
 
-## 📋 Descripción
+## �️ Galería de Características
+
+Una vista previa de los componentes y características visuales de la aplicación:
+
+<div align="center">
+
+| Componentes | Iconografía | Diseño Responsivo |
+|:---:|:---:|:---:|
+| ![Componentes](src/assets/images/components.webp) | ![Iconografía](src/assets/images/icons.webp) | ![React](src/assets/images/react.jpg) |
+| Sistema modular de UI | Librería de iconos | Interfaz moderna |
+
+</div>
+
+---
+
+## �📋 Descripción
 
 **UTEQ Smart Parking** es una aplicación administrativa moderna desarrollada con **React 19**, **CoreUI 5** y **Supabase** diseñada para gestionar de forma eficiente los vehículos autorizados y datos de sus propietarios en la Universidad Técnica Estatal de Quevedo.
 

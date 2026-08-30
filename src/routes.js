@@ -19,9 +19,8 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 // Parqueadero
-const VehiculosSimple = React.lazy(() => import('./views/parqueadero/VehiculosSimple'))
 const ListaVehiculos = React.lazy(() => import('./views/parqueadero/ListaVehiculos'))
-const ListaPropietarios = React.lazy(() => import('./views/parqueadero/ListaPropietarios'))
+const ListaPuestos = React.lazy(() => import('./views/parqueadero/ListaPuestos'))
 const HistorialVehiculos = React.lazy(() => import('./views/parqueadero/HistorialVehiculos'))
 
 // Components
@@ -71,29 +70,11 @@ const Brands = React.lazy(() => import('./views/icons/brands/Brands'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
-/**
- * Array of route configuration objects
- *
- * @type {Array<Object>}
- * @property {string} path - URL path pattern
- * @property {string} name - Display name for breadcrumbs and navigation
- * @property {React.LazyExoticComponent} element - Lazy-loaded component
- * @property {boolean} [exact] - Whether to match path exactly
- *
- * @example
- * // Route renders when URL matches '/dashboard'
- * { path: '/dashboard', name: 'Dashboard', element: Dashboard }
- *
- * @example
- * // Route with exact match required
- * { path: '/components', name: 'Components', element: Cards, exact: true }
- */
 export const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/parqueadero/vehiculos', name: 'Vehículos', element: VehiculosSimple },
   { path: '/parqueadero/vehiculo-propietario', name: 'Vehículo y propietario', element: ListaVehiculos },
-  { path: '/parqueadero/propietarios', name: 'Propietarios', element: ListaPropietarios },
+  { path: '/parqueadero/puestos', name: 'Puestos', element: ListaPuestos },
   { path: '/parqueadero/historial', name: 'Historial', element: HistorialVehiculos },
   { path: '/components', name: 'Components', element: Accordion, exact: true },
   { path: '/components/accordion', name: 'Accordion', element: Accordion },

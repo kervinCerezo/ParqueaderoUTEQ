@@ -9,7 +9,7 @@
 
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cilCarAlt, cilContact, cilHistory, cilSpeedometer, cilUser } from '@coreui/icons'
+import { cilContact, cilGrid, cilHistory, cilSpeedometer } from '@coreui/icons'
 import { CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
@@ -25,21 +25,15 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Vehículos',
-    to: '/parqueadero/vehiculos',
-    icon: <CIcon icon={cilCarAlt} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
     name: 'Vehículo y propietario',
     to: '/parqueadero/vehiculo-propietario',
     icon: <CIcon icon={cilContact} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Propietarios',
-    to: '/parqueadero/propietarios',
-    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+    name: 'Puestos',
+    to: '/parqueadero/puestos',
+    icon: <CIcon icon={cilGrid} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
