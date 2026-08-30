@@ -21,7 +21,7 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 // Parqueadero
 const ListaVehiculos = React.lazy(() => import('./views/parqueadero/ListaVehiculos'))
 const ListaPuestos = React.lazy(() => import('./views/parqueadero/ListaPuestos'))
-const HistorialVehiculos = React.lazy(() => import('./views/parqueadero/HistorialVehiculos'))
+const Historial = React.lazy(() => import('./views/parqueadero/Historial'))
 
 // Components
 const Accordion = React.lazy(() => import('./views/components/accordion/Accordion'))
@@ -75,7 +75,7 @@ export const routes = [
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/parqueadero/vehiculo-propietario', name: 'Vehículo y propietario', element: ListaVehiculos },
   { path: '/parqueadero/puestos', name: 'Puestos', element: ListaPuestos },
-  { path: '/parqueadero/historial', name: 'Historial', element: HistorialVehiculos },
+  { path: '/parqueadero/historial', name: 'Historial', element: Historial },
   { path: '/components', name: 'Components', element: Accordion, exact: true },
   { path: '/components/accordion', name: 'Accordion', element: Accordion },
   { path: '/components/alerts', name: 'Alerts', element: Alerts },

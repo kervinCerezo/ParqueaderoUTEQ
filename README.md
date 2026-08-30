@@ -14,22 +14,29 @@
 
 ---
 
-## �️ Galería de Características
+## 🖼️ Capturas de Pantalla
 
-Una vista previa de los componentes y características visuales de la aplicación:
+Explora las principales funcionalidades de UTEQ Smart Parking:
 
-<div align="center">
+### 📋 Gestión de Vehículos y Propietarios
+![Vehículos y Propietarios](docs/1.png)
+*Panel principal con tabla interactiva de vehículos registrados, información de propietarios, fotos y acciones (editar/eliminar)*
 
-| Componentes | Iconografía | Diseño Responsivo |
-|:---:|:---:|:---:|
-| ![Componentes](src/assets/images/components.webp) | ![Iconografía](src/assets/images/icons.webp) | ![React](src/assets/images/react.jpg) |
-| Sistema modular de UI | Librería de iconos | Interfaz moderna |
+### 🅿️ Puestos de Parqueadero - Vista Cuadrícula
+![Puestos Cuadrícula](docs/2.png)
+*Visualización de puestos de estacionamiento organizados por columnas con estado de ocupación (verde = disponible, rojo = ocupado)*
 
-</div>
+### 📊 Puestos de Parqueadero - Vista Tabla
+![Puestos Tabla](docs/2.5.png)
+*Vista alternativa en tabla con detalles de código, columna, sensor y distancia de cada puesto*
+
+### 📝 Historial de Cambios
+![Historial](docs/3.png)
+*Registro de todas las acciones (creación, edición, eliminación) con detalles completos de cambios realizados*
 
 ---
 
-## �📋 Descripción
+## 📋 Descripción
 
 **UTEQ Smart Parking** es una aplicación administrativa moderna desarrollada con **React 19**, **CoreUI 5** y **Supabase** diseñada para gestionar de forma eficiente los vehículos autorizados y datos de sus propietarios en la Universidad Técnica Estatal de Quevedo.
 
