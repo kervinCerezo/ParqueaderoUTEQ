@@ -1,5 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { CAlert, CButton, CCard, CCardBody, CCardHeader, CCol, CRow, CSpinner } from '@coreui/react'
+import {
+  CAlert,
+  CButton,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CFormSelect,
+  CRow,
+  CSpinner,
+} from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
   cilCamera,
@@ -24,8 +34,17 @@ import ResultadoOcr from './ResultadoOcr'
  * correspondiente si no lo está o si ocurre algún otro estado.
  */
 const MonitoreoEntrada = () => {
-  const { videoRef, camaraActiva, errorCamara, activarCamara, detenerCamara, capturarFoto } =
-    useCamara()
+  const {
+    videoRef,
+    camaraActiva,
+    errorCamara,
+    dispositivos,
+    dispositivoSeleccionado,
+    activarCamara,
+    detenerCamara,
+    capturarFoto,
+    seleccionarDispositivo,
+  } = useCamara()
   const { procesando, resultado, error, detectarPlaca, limpiarResultado } = useOcrPlaca()
 
   const [imagen, setImagen] = useState(null) // { blob, previewUrl, origen }
@@ -115,6 +134,22 @@ const MonitoreoEntrada = () => {
                 </div>
               )}
             </div>
+
+            {dispositivos.length > 1 && (
+              <CFormSelect
+                className="mb-3"
+                value={dispositivoSeleccionado}
+                onChange={(evento) => seleccionarDispositivo(evento.target.value)}
+                aria-label="Seleccionar cámara"
+              >
+                <option value="">Cámara por defecto (posterior en móviles)</option>
+                {dispositivos.map((dispositivo) => (
+                  <option key={dispositivo.deviceId} value={dispositivo.deviceId}>
+                    {dispositivo.label}
+                  </option>
+                ))}
+              </CFormSelect>
+            )}
 
             <div className="d-flex flex-wrap gap-2 mb-3">
               {!camaraActiva ? (
