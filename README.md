@@ -16,7 +16,11 @@
 
 ## 🖼️ Capturas de Pantalla
 
-Explora las principales funcionalidades de UTEQ Smart Parking:
+La experiencia principal del sistema es el monitoreo de entrada: permite capturar o subir una fotografía del vehículo, enviarla al servicio OCR y consultar si la placa está registrada.
+
+### 🎥 Monitoreo de Entrada con OCR
+![Monitoreo de entrada](docs/4.png)
+*Flujo central de control de acceso: captura o carga de una imagen, vista previa del vehículo y resultado del reconocimiento de placa con confianza OCR y estado de registro.*
 
 ### 📋 Gestión de Vehículos y Propietarios
 ![Vehículos y Propietarios](docs/1.png)
@@ -44,6 +48,8 @@ Esta solución implementa un **CRUD completo** con validaciones avanzadas, inter
 
 ### ✨ Características Principales
 
+- 🎥 **Monitoreo de entrada** mediante cámara del dispositivo o carga de imágenes
+- 🤖 **Reconocimiento OCR de placas** con confianza, estado y datos del vehículo
 - 📊 **Panel de administración intuitivo** con interfaz CoreUI
 - 🔄 **CRUD completo** (Crear, Leer, Actualizar, Eliminar)
 - 🔍 **Búsqueda avanzada** con filtros en tiempo real
@@ -65,6 +71,8 @@ Esta solución implementa un **CRUD completo** con validaciones avanzadas, inter
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Configuración de Supabase](#configuración-de-supabase-y-rls)
 - [Variables de Entorno](#variables-de-entorno)
+- [Monitoreo de Entrada](#monitoreo-de-entrada)
+- [Despliegue en Azure](#despliegue-en-azure)
 - [Validaciones del Formulario](#validaciones-del-formulario)
 - [Notas de Seguridad](#notas-de-seguridad)
 - [Guía de Desarrollo](#guía-de-desarrollo)
@@ -102,11 +110,9 @@ cp .env.local.example .env.local
 npm run dev
 ```
 
-Abre [http://localhost:5173/parqueadero/vehiculos](http://localhost:5173/parqueadero/vehiculos) en tu navegador.
+Abre [http://localhost:5173/parqueadero/vehiculo-propietario](http://localhost:5173/parqueadero/vehiculo-propietario) en tu navegador.
 
 ---
-
-## 🛠️ Tecnologías
 
 ## 🛠️ Tecnologías
 
@@ -119,6 +125,7 @@ Abre [http://localhost:5173/parqueadero/vehiculos](http://localhost:5173/parquea
 | **React Router** | Enrutamiento y navegación | 7.x |
 | **SCSS** | Preprocesador CSS moderno | Standard |
 | **Axios** (vía Supabase JS) | Cliente HTTP para API REST | - |
+| **Azure** | Despliegue de la aplicación y servicio OCR | Cloud |
 
 ---
 
@@ -269,6 +276,7 @@ Crea un archivo `.env.local` en la raíz del proyecto (copia desde `.env.local.e
 # Supabase Configuration
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your_key_here
+VITE_OCR_ENDPOINT=https://tu-servicio-ocr.azurewebsites.net/api/detectar-placa?code=tu-codigo
 
 # Otros (opcionales)
 VITE_APP_NAME=UTEQ Smart Parking
@@ -281,6 +289,7 @@ VITE_APP_VERSION=1.0.0
 |:---|:---|:---:|
 | `VITE_SUPABASE_URL` | URL de tu proyecto Supabase | ✅ |
 | `VITE_SUPABASE_PUBLISHABLE_KEY` | Clave pública (`anon`) de Supabase | ✅ |
+| `VITE_OCR_ENDPOINT` | URL del endpoint OCR para detectar placas | ✅ para monitoreo |
 
 ### ⚠️ Consideraciones Importantes
 
@@ -344,6 +353,17 @@ El sistema implementa validaciones robustas tanto en cliente como en servidor:
 - ✔️ **Servidor**: Validaciones en Supabase para integridad de datos
 - ✔️ **RLS**: Políticas de Row Level Security en base de datos
 
+### 🎥 Monitoreo de Entrada
+
+La ruta `/parqueadero/monitoreo-entrada` concentra el control de acceso vehicular:
+
+1. Activa la cámara del dispositivo o selecciona una imagen JPG/PNG.
+2. Revisa la vista previa y solicita la detección de placa.
+3. La aplicación envía la imagen a `VITE_OCR_ENDPOINT`.
+4. El resultado muestra la placa detectada, la confianza OCR, el estado y la información del vehículo registrado.
+
+El endpoint OCR se configura por ambiente. El frontend no contiene credenciales del servicio; solo utiliza la URL pública configurada en `.env.local` o en la configuración de Azure.
+
 ### 📊 Auditoría y Cumplimiento
 
 - 📝 Usar `created_at` y `updated_at` para auditoría
@@ -362,11 +382,10 @@ npm run dev              # Inicia servidor de desarrollo (puerto 5173)
 
 # Compilación
 npm run build            # Construye para producción
-npm run preview          # Previsualiza build de producción
+npm run serve            # Previsualiza el build de producción
 
-# Linting y Formato
+# Linting
 npm run lint             # Ejecuta ESLint
-npm run lint:fix         # Corrige errores de ESLint automáticamente
 ```
 
 ### 📚 Estructura de Componentes
@@ -437,6 +456,23 @@ Componentes (React)
 - 📚 [CoreUI Documentation](https://coreui.io/react/docs/)
 - 📚 [Supabase Documentation](https://supabase.com/docs)
 
+## ☁️ Despliegue en Azure
+
+La aplicación se despliega como frontend estático en Azure y consume Supabase junto con el endpoint OCR configurado para el monitoreo de entrada.
+
+### Configuración de Azure
+
+1. Crea un recurso de **Azure Static Web Apps** o **Azure App Service** conectado al repositorio.
+2. Configura el comando de compilación como `npm run build`.
+3. Configura la carpeta de salida como `dist`.
+4. Registra estas variables en la configuración del recurso, sin subir `.env.local`:
+  - `VITE_SUPABASE_URL`
+  - `VITE_SUPABASE_PUBLISHABLE_KEY`
+  - `VITE_OCR_ENDPOINT`
+5. Ejecuta una prueba en `/parqueadero/monitoreo-entrada` para verificar cámara, carga de imagen y reconocimiento OCR.
+
+> Las variables `VITE_*` se incorporan durante la compilación de Vite. Después de cambiar una variable en Azure, vuelve a desplegar la aplicación.
+
 ---
 
 ## 📋 Checklist de Despliegue
@@ -448,7 +484,8 @@ Componentes (React)
 - [ ] Datos sensibles no se exponen en logs
 - [ ] SSL/TLS habilitado
 - [ ] Backups de BD configurados
-- [ ] Monitoreo y alertas activos
+- [ ] Monitoreo y alertas de Azure activos
+- [ ] Prueba OCR completada en `/parqueadero/monitoreo-entrada`
 
 ---
 
