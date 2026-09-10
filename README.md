@@ -169,7 +169,11 @@ Parqueadero/
 │   └── manifest.json               # Manifest PWA
 │
 ├── 📂 docs/                        # Documentación y assets
-│   ├── image.png                   # Imagen principal
+│   ├── 1.png                       # Vehículos y propietarios
+│   ├── 2.png                       # Puestos en cuadrícula
+│   ├── 2.5.png                     # Puestos en tabla
+│   ├── 3.png                       # Historial de cambios
+│   ├── 4.png                       # Monitoreo de entrada con OCR
 │   └── README.md                   # Docs adicionales
 │
 ├── 📂 sql/                         # Scripts de base de datos
