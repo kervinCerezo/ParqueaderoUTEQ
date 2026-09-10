@@ -153,7 +153,7 @@ const MonitoreoEntrada = () => {
 
             <div className="d-flex flex-wrap gap-2 mb-3">
               {!camaraActiva ? (
-                <CButton color="success" onClick={activarCamara}>
+                <CButton color="success" onClick={() => activarCamara()}>
                   <CIcon icon={cilCamera} className="me-1" />
                   Activar cámara
                 </CButton>
